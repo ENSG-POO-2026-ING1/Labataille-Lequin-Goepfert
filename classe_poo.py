@@ -3,13 +3,17 @@ class Case:
         self.disponibilite = disponibilite
         self.couleur = couleur
 
-class Polymino(Case) :
+class Polyomino(Case) :
     def __init__(self, occupation, couleur, forme):
         self.forme = forme
         self.couleur = couleur
         
-class Case_bloque(self, disponibilite, couleur) : 
-    def __init__(self, )
+        
+class Case_bloque(Case) : 
+    def __init__(disponibilite, couleur):
+        super().__init__(disponibilite, couleur)
+    
+        
 
 class Grille :
     def __init__(self, tableau):
