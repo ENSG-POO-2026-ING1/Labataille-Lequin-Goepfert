@@ -47,7 +47,19 @@ class Figure():
     
     # Methodes
     def est_respectee(): #nico est dessus
-        pass
+    def col_full(grille,col):
+
+        for ligne in grille:
+            if ligne[col][0] == 'True': # si une case de la colonne est libre
+                return False
+        return True # si toute la colonne est pleine
+
+    def ligne_full(grille, ligne):
+        for case in grille[ligne]:
+            if case[0] == 'True':
+                return False # si une case de la ligne est libre
+        return True # si toute la ligne est pleine
+        
         
         
 if __name__ == "__main__":
