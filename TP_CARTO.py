@@ -55,8 +55,18 @@ def figure_origine(figure):
         figure_finale[x][y] = 1
     return figure_finale
 
+def verif_local(grille):
+    for ligne in grille:
+        for case in ligne:
+            if case == 3:
+                return False
+    return True
+
+
 fig = poly_aleatoire(6)
 print(fig)
+
+
 
 
 
