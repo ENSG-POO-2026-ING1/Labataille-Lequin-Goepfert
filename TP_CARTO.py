@@ -31,23 +31,35 @@ def grille_initiale(n,m): #renvoie une grille de taille n*m  et n//3 cases bloqu
             
     return grille
 
-
-
-def poly_aleatoire(n_poly,m_poly,dico_couleur):  #longeur, largeur, couleur du poly
+def poly_aleatoire(taille_max):
+    figure = {(0,0)}
     
-    poly = []
-    couleur = None
-    numero = random.randint(1,len(dico_couleur))
-    for x in dico_couleur:
-        if dico_couleur[x] == numero:
-            couleur = x
-    for i in range(n_poly):
-        poly.append([])
-        for j in range(m_poly):
-           poly[i].append(couleur)
-    return poly
+    while len(figure) < taille_max:
+        print(figure)
+        x,y = random.choice(list(figure))
+              
+        dx,dy = random.choice([(1,0),(-1,0),(0,1),(0,-1)])
+        figure.add((x + dx, y + dy))
+              
+    return figure_origine(figure)
+
+def figure_origine(figure):
+    
+    min_x = min(x for x,y in figure)
+    min_y = min(y for x,y in figure)
+    figure = {(x - min_x, y - min_y) for x,y in figure}
+    max_x = max(x for x,y in figure)
+    max_y = max(y for x,y in figure)
+    figure_finale = [[0] * (max_y + 1) for i in range(max_x + 1)]
+    for x,y in figure:
+        figure_finale[x][y] = 1
+    return figure_finale
+
+fig = poly_aleatoire(6)
+print(fig)
 
 
-print(poly_aleatoire(2,2,dico_couleur))
+
+# print(poly_aleatoire(2,2,dico_couleur))
 # print(grille_initiale(6,6))
     
