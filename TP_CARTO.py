@@ -58,9 +58,18 @@ def figure_origine(figure):
 def verif_local(grille):
     for ligne in grille:
         for case in ligne:
-            if case == 3:
+            if case <= 3:
                 return False
     return True
+
+def poser_piece(grille, piece, x, y, couleur):
+    for i in range(len(piece)):
+        for j in range(len(piece[0])):
+            if piece[i][j] == 1:
+                gx = x + i
+                gy = y + j
+                grille[gx][gy][0] += 2
+                grille[gx][gy][1] = couleur
 
 
 fig = poly_aleatoire(6)
