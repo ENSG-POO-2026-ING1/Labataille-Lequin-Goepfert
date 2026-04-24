@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import random
+import random 
 import numpy as np
 import classe_poo
 
@@ -18,6 +18,7 @@ def affiche_couleur(grille) :
         for element in ligne :
             print(element[1], end=' ')
         print()
+
 
 def grille_initiale(n,m): #renvoie une grille de taille n*m  et n//3 cases bloquées
     grille = []
@@ -107,22 +108,11 @@ def poser_piece(grille, piece, x, y):
 
     return grille
 
-def jouer():
-    
-    n = int(input("Donne moi la largeur de grille que tu souhaite : "))
-    m = int(input("Donne moi la longueur de grille que tu souhaite : "))
-    grille = grille_initiale(n,m)
-    print(grille)
-    while verif_local(grille):
-        fig = poly_aleatoire(6)
-        print(f"Voici ta grille : {grille}")
-        print(f"Voici ton polyomino : {fig}")
-        x = int(input("Donne la colonne où tu veux que ta case du haut à gauche se place : " ))
-        y = int(input("Donne la ligne où tu veux que ta case du haut à gauche se place : " ))
-        poser_piece(grille, fig, x, y, "bleu")
+
     
 
 if __name__ == "__main__":
+
 
     grille = grille_initiale(5,5)
     affiche_disponibilite(grille)
@@ -135,6 +125,7 @@ if __name__ == "__main__":
     affiche_disponibilite(grille1)
     affiche_couleur(grille1)
     # jouer()
+
 
 
 
