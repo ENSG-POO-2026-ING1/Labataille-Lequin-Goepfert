@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import random
+import random 
 import numpy as np
 
 
@@ -11,6 +11,7 @@ def affiche_joliment(grille) :
         for element in ligne :
             print(element[0], end=' ')
         print()
+
 
 
 def grille_initiale(n,m): #renvoie une grille de taille n*m  et n//3 cases bloquées
@@ -85,10 +86,12 @@ def jouer():
     n = int(input("Donne moi la largeur de grille que tu souhaite : "))
     m = int(input("Donne moi la longueur de grille que tu souhaite : "))
     grille = grille_initiale(n,m)
-    print(grille)
     while verif_local(grille):
-        fig = poly_aleatoire(6)
-        print(f"Voici ta grille : {grille}")
+        taille = random.randint(1,n)
+        fig = poly_aleatoire(taille)
+        print("Voici ta grille :")
+        affiche_joliment(grille)
+        
         print(f"Voici ton polyomino : {fig}")
         x = int(input("Donne la colonne où tu veux que ta case du haut à gauche se place : " ))
         y = int(input("Donne la ligne où tu veux que ta case du haut à gauche se place : " ))
