@@ -81,21 +81,7 @@ def poser_piece(grille, piece, x, y, couleur):
                 grille[gx][gy][1] = couleur
     return grille
 
-def jouer():
-    
-    n = int(input("Donne moi la largeur de grille que tu souhaite : "))
-    m = int(input("Donne moi la longueur de grille que tu souhaite : "))
-    grille = grille_initiale(n,m)
-    while verif_local(grille):
-        taille = random.randint(1,n)
-        fig = poly_aleatoire(taille)
-        print("Voici ta grille :")
-        affiche_joliment(grille)
-        
-        print(f"Voici ton polyomino : {fig}")
-        x = int(input("Donne la colonne où tu veux que ta case du haut à gauche se place : " ))
-        y = int(input("Donne la ligne où tu veux que ta case du haut à gauche se place : " ))
-        poser_piece(grille, fig, x, y, "bleu")
+
     
 
 if __name__ == "__main__":
@@ -108,7 +94,7 @@ if __name__ == "__main__":
     # print(grille)
     # affiche_joliment(grille)
     
-    jouer()
+    pass
 
 
 
