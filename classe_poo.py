@@ -19,11 +19,11 @@ class Grille :
     def __init__(self, tableau):
         self.tableau = tableau
         
-    def integration(self,poly,case_depart):
+    # def integration(self,poly,case_depart):
         
-        for i in range(len(self.tableau)):
-            for j in range(len(self.tableau[i])):
-                poly[]
+    #     for i in range(len(self.tableau)):
+    #         for j in range(len(self.tableau[i])):
+    #             poly[]
         
 class Partie :
     def __init__(self, id_partie, tour, largeur_grille, longueur_grille, nombre_case_bloquee):
