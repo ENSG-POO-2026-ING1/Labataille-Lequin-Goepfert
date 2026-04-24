@@ -6,7 +6,11 @@ import numpy as np
 
 dico_couleur = {"bleu":1, "rouge":2, "violet":3, "jaune":4, "vert":5}
 
-
+def affiche_joliment(grille) :
+    for ligne in grille :
+        for element in ligne :
+            print(element[0], end=' ')
+        print()
 
 
 def grille_initiale(n,m): #renvoie une grille de taille n*m  et n//3 cases bloquées
@@ -36,7 +40,7 @@ def poly_aleatoire(taille_max):
     figure = {(0,0)}
     
     while len(figure) < taille_max:
-        print(figure)
+        # print(figure)
         x,y = random.choice(list(figure))
               
         dx,dy = random.choice([(1,0),(-1,0),(0,1),(0,-1)])
@@ -70,19 +74,21 @@ def poser_piece(grille, piece, x, y, couleur):
                 gx = x + i
                 gy = y + j
                 if gx >= len(grille) or gy >= len(grille[0]): 
-                    raise IndexError (f"Coordonnée en dehors de la grille")
-                grille[gx][gy][0] += 2
+                    raise IndexError ("Coordonnée en dehors de la grille")
+                grille[gx][gy][0] += 1
                 grille[gx][gy][1] = couleur
     return grille
 
 if __name__ == "__main__":
     
     grille = grille_initiale(5,5)
-    print(grille)
+    # affiche_joliment(grille)
     fig = poly_aleatoire(5)
     print(fig)
+    affiche_joliment(fig)
     grille = poser_piece(grille, fig, 0, 0, "rouge")
     print(grille)
+    affiche_joliment(grille)
 
 
 
