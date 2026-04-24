@@ -68,8 +68,8 @@ def poser_piece(grille, piece, x, y, couleur):
             if piece[i][j] == 1:
                 gx = x + i
                 gy = y + j
-                if 0 <= gx <len(grille) 
-                    raise IndexError
+                if gx >= len(grille) or gy >= len(grille[0]): 
+                    raise IndexError (f"Coordonnée en dehors de la grille")
                 grille[gx][gy][0] += 2
                 grille[gx][gy][1] = couleur
     return grille
