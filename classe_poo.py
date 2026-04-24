@@ -1,10 +1,17 @@
 import TP_CARTO
+import numpy as np
+import random
 
+dico_couleur = {"bleu":1, "rouge":2, "violet":3, "jaune":4, "vert":5}
+dico_couleur_inv = {1:"bleu", 2:"rouge", 3:"violet", 4:"jaune", 5:"vert"}
 
 class Grille :
+
+    ### Constructeur
     def __init__(self, tableau):
         self.tableau = tableau
     
+    ### Surcharge
     def __str__(self):
         txt = ""
         for ligne in self.tableau :
@@ -13,26 +20,46 @@ class Grille :
                 txt += ' '
             txt += "\n"
         return txt
+    
+    def __len__(self):
+        return len(self.tableau)
+    
+    ### Methodes
+    def affiche_couleur(self) :
+        for ligne in self.tableau :
+            for element in ligne :
+                print(element[1], end=' ')
+            print()
+    
+    def poser_piece(self, piece, x, y): # Propre aux grilles mais pas aux poly ? 
+        for i in range(len(piece)):
+            for j in range(len(piece.tableau[0])):
+                if piece.tableau[i][j][0] == 1:
+                    gx = x + i
+                    gy = y + j
+                    
+                    if gx >= len(self.tableau) or gy >= len(self.tableau[0]) or gx < 0 or gy < 0: 
+                        raise IndexError (f"Coordonnée en dehors de la grille")
+                    else :
+                        self.tableau[gx][gy][0] = piece.tableau[i][j][0] #disponibilite
+                        self.tableau[gx][gy][1] = piece.tableau[i][j][1] #couleur
 
 class Polyomino(Grille) :
     def __init__(self, tableau):
         super().__init__(tableau)
+        
     
-    def __str__(self):
-        super().__str__(self.tableau)
         
-        
-        
-class Case:
-    def __init__(self, disponibilite, couleur):
-        self.disponibilite = disponibilite
-        self.couleur = couleur
+# class Case:
+#     def __init__(self, disponibilite, couleur):
+#         self.disponibilite = disponibilite
+#         self.couleur = couleur
 
 
         
-class Case_bloque(Case) : 
-    def __init__(disponibilite, couleur):
-        super().__init__(disponibilite, couleur)
+# class Case_bloque(Case) : 
+#     def __init__(disponibilite, couleur):
+#         super().__init__(disponibilite, couleur)
 
         
 class Partie :

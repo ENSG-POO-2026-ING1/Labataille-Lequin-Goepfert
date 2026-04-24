@@ -7,18 +7,6 @@ from classe_poo import *
 dico_couleur = {"bleu":1, "rouge":2, "violet":3, "jaune":4, "vert":5}
 dico_couleur_inv = {1:"bleu", 2:"rouge", 3:"violet", 4:"jaune", 5:"vert"}
 
-def affiche_disponibilite(grille) :
-    for ligne in grille :
-        for element in ligne :
-            print(element[0], end=' ')
-        print()
-
-def affiche_couleur(grille) :
-    for ligne in grille :
-        for element in ligne :
-            print(element[1], end=' ')
-        print()
-
 
 def grille_initiale(n,m): #renvoie une grille de taille n*m  et n//3 cases bloquées
     grille = []
@@ -92,39 +80,28 @@ def verif_local(grille):
                 return False
     return True
 
-def poser_piece(grille, piece, x, y):
-    for i in range(len(piece)):
-        for j in range(len(piece[0])):
-            if piece[i][j][0] == 1:
-                gx = x + i
-                gy = y + j
-                
-                if gx >= len(grille) or gy >= len(grille[0]) or gx < 0 or gy < 0: 
-                    raise IndexError (f"Coordonnée en dehors de la grille")
-                else :
-                    grille[gx][gy][0] = piece[i][j][0] #disponibilite
-                    grille[gx][gy][1] = piece[i][j][1] #couleur
-
-    return grille
-
 
     
 
 if __name__ == "__main__":
-
-
+    
+    print()
+    print("Grille")
     grille = Grille(grille_initiale(5,5))
     print(grille)
-
+    grille.affiche_couleur()
+    print(len(grille))
+    
+    print()
+    print("Polyomino")
     fig = Polyomino(poly_aleatoire(5))
     print(fig)
-    # # affiche_couleur(fig)
-    # affiche_disponibilite(fig)
-    # print()
-    # grille1 = poser_piece(grille, fig, 0, 0)
-    # affiche_disponibilite(grille1)
-    # affiche_couleur(grille1)
-    # # jouer()
+    fig.affiche_couleur()
+    
+    print()
+    print("Placement de la pièce")
+    grille.poser_piece(fig, 0, 0)
+    print(grille)
 
 
 
