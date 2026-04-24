@@ -1,0 +1,7 @@
+La partie se déroule sur une grille de 11 par 11 avec 5 cases bloquées.
+Ces règles s'appliquent sur chaque cases ou colonnes ou lignes: 
+	-champs(jaune) à côté des montagne(grise) : +2
+	-habitation(marron) à côté de riviere ou de lacs(bleu) : +3
+	-gobelin(violet) à côté de champs ou habitation : -1
+
+	-colonne pleine ou ligne pleine +2
