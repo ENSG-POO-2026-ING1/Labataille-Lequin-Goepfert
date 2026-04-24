@@ -13,8 +13,8 @@ def grille_initiale(n,m): #renvoie une grille de taille n*m  et n//3 cases bloqu
     for i in range(n):
         grille.append([])
         for j in range(m):
-            grille[i].append([True,"blanc"])
-    grille = np.array(grille)
+            grille[i].append([0,"blanc"])
+    #grille = np.array(grille)
             
     nb_bloquees = n//3
     L = []
@@ -27,7 +27,7 @@ def grille_initiale(n,m): #renvoie une grille de taille n*m  et n//3 cases bloqu
         if (a,b) not in L:
             compteur += 1
             L.append((a,b))
-            grille[a][b] = [False,"noir"]
+            grille[a][b] = [1,"noir"]
             
     return grille
 
@@ -68,12 +68,20 @@ def poser_piece(grille, piece, x, y, couleur):
             if piece[i][j] == 1:
                 gx = x + i
                 gy = y + j
+                if 0 <= gx <len(grille) 
+                    raise IndexError
                 grille[gx][gy][0] += 2
                 grille[gx][gy][1] = couleur
+    return grille
 
-
-fig = poly_aleatoire(6)
-print(fig)
+if __name__ == "__main__":
+    fig = poly_aleatoire(6)
+    print("a")
+    print(fig)
+    print("a")
+    a = grille_initiale(5,5)
+    aa = poser_piece(a, fig, 5, 5, "rouge")
+    print(aa)
 
 
 
