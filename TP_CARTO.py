@@ -16,7 +16,7 @@ def grille_initiale(n,m): #renvoie une grille de taille n*m  et n//3 cases bloqu
             grille[i].append([0,"blanc"])
     #grille = np.array(grille)
             
-    nb_bloquees = n//3
+    nb_bloquees = n//2
     L = []
     
     compteur = 0
@@ -79,6 +79,75 @@ def verif_local(grille):
             if case[0] >= 2:
                 return False
     return True
+
+
+def poser_piece(grille, piece, x, y):
+    for i in range(len(piece)):
+        for j in range(len(piece[0])):
+            if piece[i][j][0] == 1:
+                gx = x + i
+                gy = y + j
+                
+                if gx >= len(grille) or gy >= len(grille[0]) or gx < 0 or gy < 0: 
+                    raise IndexError (f"Coordonnée en dehors de la grille")
+                else :
+                    grille[gx][gy][0] += piece[i][j][0] #disponibilite
+                    grille[gx][gy][1] = piece[i][j][1]#couleur
+    return grille
+
+def col_full(grille,col):
+
+    for ligne in grille:
+        if ligne[col][0] == 0: # si une case de la colonne est libre
+            return False
+    return True # si toute la colonne est pleine
+
+def ligne_full(grille, ligne):
+    for case in grille[ligne]:
+        if case[0] == 0:
+            return False # si une case de la ligne est libre
+    return True # si toute la ligne est pleine
+
+def score_variantes(grille):
+    lignes = len(grille)
+    colonnes = len(grille[0])
+    score = 0
+
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+    print("Duo de point : ")
+    for i in range(lignes):
+        for j in range(colonnes):
+
+            case = grille[i][j][1]
+
+            for di, dj in directions:
+                ni = i + di
+                nj = j + dj
+
+                if 0 <= ni < lignes and 0 <= nj < colonnes:
+                    voisin = grille[ni][nj][1]
+
+                    # Champ à côté montagne : +1
+                    if case == 'jaune' and voisin == 'gris':
+                        print(case,voisin)
+                        score += 2
+
+                    # Champ à côté gobelin : -1
+                    if case == 'jaune' and voisin == 'violet':
+                        print(case,voisin)
+                        score -= 1
+
+                    # Habitation à côté eau : +1
+                    if case == 'rouge' and voisin == 'bleu':
+                        print(case,voisin)
+                        score += 3
+
+                    if case == 'vert' and voisin == 'rouge':
+                        print(case,voisin)
+                        score += 2
+
+    return score
+
 
 
     

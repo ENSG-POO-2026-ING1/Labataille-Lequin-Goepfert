@@ -78,7 +78,7 @@ class Partie :
 class Figure():
     def __init__(self, nom, description, nombre_de_point, etat):
         self.nom = nom                              # 'O', 'I', 'T' par ex
-        self.descritpion = descritpion              # toute une colonne/ligne remplie
+        self.descritpion = description              # toute une colonne/ligne remplie
         self.nombre_de_point = nombre_de_point      # Nombre de points si cette figure est réalisée. 
         self.score = 0                              # Initialisation du score
     
