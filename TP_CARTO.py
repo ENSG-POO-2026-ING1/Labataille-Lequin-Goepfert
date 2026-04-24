@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import random 
 import numpy as np
-import classe_poo
+from classe_poo import *
 
 
 dico_couleur = {"bleu":1, "rouge":2, "violet":3, "jaune":4, "vert":5}
@@ -46,7 +46,6 @@ def grille_initiale(n,m): #renvoie une grille de taille n*m  et n//3 cases bloqu
 def poly_aleatoire(taille_max):
     #Choix de la couleur
     c = dico_couleur_inv[random.randint(1,5)]
-    print(c)
     
     figure = {(0,0)}
     
@@ -166,17 +165,18 @@ def score_variantes(grille):
 if __name__ == "__main__":
 
 
-    grille = grille_initiale(5,5)
-    affiche_disponibilite(grille)
-    fig = poly_aleatoire(5)
+    grille = Grille(grille_initiale(5,5))
+    print(grille)
+
+    fig = Polyomino(poly_aleatoire(5))
     print(fig)
-    # affiche_couleur(fig)
-    affiche_disponibilite(fig)
-    print()
-    grille1 = poser_piece(grille, fig, 0, 0)
-    affiche_disponibilite(grille1)
-    affiche_couleur(grille1)
-    # jouer()
+    # # affiche_couleur(fig)
+    # affiche_disponibilite(fig)
+    # print()
+    # grille1 = poser_piece(grille, fig, 0, 0)
+    # affiche_disponibilite(grille1)
+    # affiche_couleur(grille1)
+    # # jouer()
 
 
 
