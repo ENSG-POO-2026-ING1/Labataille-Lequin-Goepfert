@@ -1,29 +1,39 @@
 import TP_CARTO
 
 
+class Grille :
+    def __init__(self, tableau):
+        self.tableau = tableau
+    
+    def __str__(self):
+        txt = ""
+        for ligne in self.tableau :
+            for element in ligne :
+                txt += str(element[0])
+                txt += ' '
+            txt += "\n"
+        return txt
+
+class Polyomino(Grille) :
+    def __init__(self, tableau):
+        super().__init__(tableau)
+    
+    def __str__(self):
+        super().__str__(self.tableau)
+        
+        
+        
 class Case:
     def __init__(self, disponibilite, couleur):
         self.disponibilite = disponibilite
         self.couleur = couleur
 
-class Polyomino(Case) :
-    def __init__(self, occupation, couleur, forme):
-        self.forme = forme
-        self.couleur = couleur
+
         
 class Case_bloque(Case) : 
     def __init__(disponibilite, couleur):
         super().__init__(disponibilite, couleur)
 
-class Grille :
-    def __init__(self, tableau):
-        self.tableau = tableau
-        
-    # def integration(self,poly,case_depart):
-        
-    #     for i in range(len(self.tableau)):
-    #         for j in range(len(self.tableau[i])):
-    #             poly[]
         
 class Partie :
     def __init__(self, id_partie, tour, largeur_grille, longueur_grille, nombre_case_bloquee):
