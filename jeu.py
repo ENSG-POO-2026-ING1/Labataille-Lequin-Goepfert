@@ -1,4 +1,6 @@
-from TP_CARTO import * 
+from TP_CARTO import *
+from classe_poo import *  
+
 import random
 
 
@@ -7,43 +9,43 @@ def jouer():
     n = input("Vous souhaitez jouer dans quel mode de diffilculté ? Facile/Moyen/Difficil ")
     if n == "F" or n == "f":
         t = 5
-        grille = grille_initiale(t,t)
+        grille = Grille(grille_initiale(t,t))
     elif n == "M" or n == "m":
         t = 7
-        grille = grille_initiale(t,t)
+        grille = Grille(grille_initiale(t,t))
     elif n == "D" or n =="d":
         t = 11
-        grille = grille_initiale(t,t)
+        grille = Grille(grille_initiale(t,t))
     else : 
         raise KeyError (f"Vous devez choisir un mode de difficulté")
     tour = 0
     while verif_local(grille):
         taille = random.randint(1,t)
-        fig = poly_aleatoire(taille)
+        fig = Polyomino(poly_aleatoire(taille))
         print("Voici ta grille :")
         print()
-        affiche_disponibilite(grille)
+        print(grille)
         print()
         print("Voici ta grille de couleur:")
         print()
-        affiche_couleur(grille)
+        grille.affiche_couleur()
         print()
 
         
         print("Voici ton polyomino :")
         print()
-        affiche_disponibilite(fig)
+        print(fig)
         x = int(input("Donne la colonne où tu veux que ta case du haut à gauche se place : " ))
         y = int(input("Donne la ligne où tu veux que ta case du haut à gauche se place : " ))
-        poser_piece(grille, fig, x, y)
+        grille.poser_piece(fig, x, y)
         tour += 1
     print("Voici ta grille :")
     print()
-    affiche_disponibilite(grille)
+    print(grille)
     print()
     print("Voici ta grille de couleur:")
     print()
-    affiche_couleur(grille)
+    grille.affiche_couleur()
     resultat = score(grille)
     print(resultat)
     

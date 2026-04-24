@@ -7,9 +7,12 @@ dico_couleur_inv = {1:"bleu", 2:"rouge", 3:"violet", 4:"jaune", 5:"vert"}
 
 class Grille :
 
+    
     ### Constructeur
     def __init__(self, tableau):
         self.tableau = tableau
+        self.index = 0
+    
     
     ### Surcharge
     def __str__(self):
@@ -24,6 +27,17 @@ class Grille :
     def __len__(self):
         return len(self.tableau)
     
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.index < len(self.tableau):
+            item = self.tableau[self.index]
+            self.index += 1
+            return item
+        else :
+            raise StopIteration
+            
     ### Methodes
     def affiche_couleur(self) :
         for ligne in self.tableau :
@@ -41,8 +55,49 @@ class Grille :
                     if gx >= len(self.tableau) or gy >= len(self.tableau[0]) or gx < 0 or gy < 0: 
                         raise IndexError (f"Coordonnée en dehors de la grille")
                     else :
-                        self.tableau[gx][gy][0] = piece.tableau[i][j][0] #disponibilite
+                        self.tableau[gx][gy][0] += piece.tableau[i][j][0] #disponibilite
                         self.tableau[gx][gy][1] = piece.tableau[i][j][1] #couleur
+                        
+    def score_variantes(self):
+        lignes = len(self.tableau)
+        colonnes = len(self.tableau[0])
+        score = 0
+    
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        print("Duo de point : ")
+        for i in range(lignes):
+            for j in range(colonnes):
+    
+                case = self.tableau[i][j][1]
+    
+                for di, dj in directions:
+                    ni = i + di
+                    nj = j + dj
+    
+                    if 0 <= ni < lignes and 0 <= nj < colonnes:
+                        voisin = self.tableau[ni][nj][1]
+    
+                        # Champ à côté montagne : +1
+                        if case == 'jaune' and voisin == 'gris':
+                            print(case,voisin)
+                            score += 2
+    
+                        # Champ à côté gobelin : -1
+                        if case == 'jaune' and voisin == 'violet':
+                            print(case,voisin)
+                            score -= 1
+    
+                        # Habitation à côté eau : +1
+                        if case == 'rouge' and voisin == 'bleu':
+                            print(case,voisin)
+                            score += 3
+    
+                        if case == 'vert' and voisin == 'rouge':
+                            print(case,voisin)
+                            score += 2
+    
+        return score
+
 
 class Polyomino(Grille) :
     def __init__(self, tableau):
@@ -99,7 +154,7 @@ class Figure():
         
         
         
-if __name__ == "__main__":
-    case1 = Case(True, "green")
+# if __name__ == "__main__":
+#     case1 = Case(True, "green")
 
     
