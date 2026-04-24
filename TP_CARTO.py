@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import random
 import numpy as np
 
@@ -91,6 +92,7 @@ def jouer():
 
 if __name__ == "__main__":
     jouer()
+
 
 
 
