@@ -63,7 +63,7 @@ def figure_origine(figure):
 def verif_local(grille):
     for ligne in grille:
         for case in ligne:
-            if case <= 3:
+            if case[0] >= 2:
                 return False
     return True
 
@@ -73,27 +73,43 @@ def poser_piece(grille, piece, x, y, couleur):
             if piece[i][j] == 1:
                 gx = x + i
                 gy = y + j
-                if gx >= len(grille) or gy >= len(grille[0]): 
-                    raise IndexError ("Coordonnée en dehors de la grille")
+                if gx >= len(grille) or gy >= len(grille[0]) or gx < 0 or gy < 0: 
+                    raise IndexError (f"Coordonnée en dehors de la grille")
+
                 grille[gx][gy][0] += 1
                 grille[gx][gy][1] = couleur
     return grille
 
-if __name__ == "__main__":
+def jouer():
     
-    grille = grille_initiale(5,5)
-    # affiche_joliment(grille)
-    fig = poly_aleatoire(5)
-    print(fig)
-    affiche_joliment(fig)
-    grille = poser_piece(grille, fig, 0, 0, "rouge")
+    n = int(input("Donne moi la largeur de grille que tu souhaite : "))
+    m = int(input("Donne moi la longueur de grille que tu souhaite : "))
+    grille = grille_initiale(n,m)
     print(grille)
-    affiche_joliment(grille)
+    while verif_local(grille):
+        fig = poly_aleatoire(6)
+        print(f"Voici ta grille : {grille}")
+        print(f"Voici ton polyomino : {fig}")
+        x = int(input("Donne la colonne où tu veux que ta case du haut à gauche se place : " ))
+        y = int(input("Donne la ligne où tu veux que ta case du haut à gauche se place : " ))
+        poser_piece(grille, fig, x, y, "bleu")
+    
+
+if __name__ == "__main__":
+    # grille = grille_initiale(5,5)
+    # affiche_joliment(grille)
+    # fig = poly_aleatoire(5)
+    # print(fig)
+    # affiche_joliment(fig)
+    # grille = poser_piece(grille, fig, 0, 0, "rouge")
+    # print(grille)
+    # affiche_joliment(grille)
+    
+    jouer()
 
 
 
 
 
-# print(poly_aleatoire(2,2,dico_couleur))
-# print(grille_initiale(6,6))
+
     
