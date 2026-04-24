@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import random
 import numpy as np
 
@@ -75,13 +76,13 @@ def poser_piece(grille, piece, x, y, couleur):
     return grille
 
 if __name__ == "__main__":
-    fig = poly_aleatoire(6)
-    print("a")
+    
+    grille = grille_initiale(5,5)
+    print(grille)
+    fig = poly_aleatoire(5)
     print(fig)
-    print("a")
-    a = grille_initiale(5,5)
-    aa = poser_piece(a, fig, 5, 5, "rouge")
-    print(aa)
+    grille = poser_piece(grille, fig, 0, 0, "rouge")
+    print(grille)
 
 
 
