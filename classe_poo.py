@@ -91,12 +91,45 @@ class Grille :
                         if case == 'rouge' and voisin == 'bleu':
                             print(case,voisin)
                             score += 3
-    
+
+                        # Habitation à côté de forêt : +1
                         if case == 'vert' and voisin == 'rouge':
                             print(case,voisin)
                             score += 2
+
+                        # Habitation à côté gobelin : -2
+                        if case == 'rouge' and voisin == 'violet':
+                            print(case,voisin)
+                            score -= 2
     
         return score
+    
+    def col_full(self, col):
+
+        for ligne in self.tableau:
+            if ligne[col][0] == 0: # si une case de la colonne est libre
+                return False
+        return True # si toute la colonne est pleine
+
+    def ligne_full(self, ligne):
+        for case in self.tableau[ligne]:
+            if case[0] == 0:
+                return False # si une case de la ligne est libre
+        return True # si toute la ligne est pleine
+    
+    def score(self):
+        score = 0
+        for ligne in range(len(self.tableau)):
+            if self.col_full(ligne) :
+                score += 2
+        
+        for col in range(len(self.tableau[0])):
+            if self.ligne_full( col):
+                score += 2
+        score_couleur = self.score_variantes()
+        score_final = score + score_couleur
+        return score_final
+
 
 
 class Polyomino(Grille) :

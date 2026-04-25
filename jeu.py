@@ -46,7 +46,7 @@ def jouer():
     print("Voici ta grille de couleur:")
     print()
     grille.affiche_couleur()
-    resultat = grille.score_variantes()
+    resultat = grille.score()
     print(resultat)
     
 def score(grille):
