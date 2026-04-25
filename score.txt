@@ -3,5 +3,6 @@ Ces règles s'appliquent sur chaque cases ou colonnes ou lignes:
 	-champs(jaune) à côté des montagne(grise) : +2
 	-habitation(marron) à côté de riviere ou de lacs(bleu) : +3
 	-gobelin(violet) à côté de champs ou habitation : -1
+	-habitation(marron) à côté de forêt(vert) : +3
 
 	-colonne pleine ou ligne pleine +2
